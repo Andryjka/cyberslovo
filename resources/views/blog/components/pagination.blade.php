@@ -1,0 +1,2 @@
+<span style="font-family: 'Arsenal', sans-serif; font-size: 1.5rem; text-decoration: none; text-transform: uppercase; cursor:pointer" id="nextPage" rel="next">Показать больше<br><i style="text-align:center; display: block;" class="fa fa-plus-circle" aria-hidden="true"></i>
+</span>

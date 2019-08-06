@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /node_modules
+Disallow: /admin_template
+Disallow: /vendor
+Sitemap: https://cyberslovo.ru/sitemap.xml
