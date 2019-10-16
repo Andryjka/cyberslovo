@@ -11,7 +11,7 @@
 |
 */
 
-URL::forceScheme('https');
+//URL::forceScheme('https');
 
 Route::get('/category/{slug?}', 'BlogController@category')->name('category');
 Route::get('/blog/{slug?}', 'BlogController@article')->name('article');

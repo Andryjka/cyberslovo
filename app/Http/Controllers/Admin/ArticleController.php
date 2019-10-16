@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
 use Spatie\Sitemap\SitemapGenerator;
+use App\User;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -20,7 +22,7 @@ class ArticleController extends Controller
     public function index()
     {
         return view('admin.articles.index')->with([
-            'articles' => Article::orderBy('created_at', 'desc')->paginate(10),
+            'articles' => Article::orderBy('created_at', 'desc')->with('author')->paginate(10),
         ]);
     }
 

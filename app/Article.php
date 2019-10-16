@@ -41,10 +41,12 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
-
+    /**
+     * Get the author of article
+     */
     public function author()
     {
-        return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function getTagsList()
