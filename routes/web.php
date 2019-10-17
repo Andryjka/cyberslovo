@@ -11,14 +11,21 @@
 |
 */
 
+
+// Turn on HTTPS
 //URL::forceScheme('https');
 
 Route::get('/category/{slug?}', 'BlogController@category')->name('category');
 Route::get('/blog/{slug?}', 'BlogController@article')->name('article');
 Route::get('/tag/{name?}', 'BlogController@articlesByTag')->name('articles.tags');
 
+/**
+ *
+ * Маршруты панели администратора 
+ * 
+ */
 
-Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Admin', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Admin'], function(){
     //Route::get('/', 'DashboardController@index')->name('admin.index');
     Route::get('/', function(){
         return redirect('/cyberpunk/article');
@@ -29,7 +36,15 @@ Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Admin', 'middleware' => [
     Route::resource('/article', 'ArticleController', ['as' => 'admin']);
     Route::resource('/tags', 'TagsController', ['as' => 'admin']);
     Route::resource('/today', 'TodayController', ['as' => 'admin']);
+    Route::resource('/myArticles', 'AuthorsController', ['as' => 'admin']);
+    Route::resource('/roles','RoleController');
 });
+
+/**
+ * 
+ * Настройка личных данных пользователя
+ * 
+ */
 
 Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Auth', 'middleware' => ['auth']], function(){
 
@@ -41,6 +56,11 @@ Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Auth', 'middleware' => ['
 
 });
 
+/**
+ *
+ * Главная страница сайта https://cyberslovo.ru/
+ *
+ */
 
 Route::get('/', function () {
 	$meta = [
@@ -58,6 +78,12 @@ Route::get('/', function () {
         ]);
 });
 
+/**
+ *
+ * Страница с инсайдами https://cyberslovo.ru/insiders
+ * 
+ */
+
 Route::get('/insider', function(){
     $meta = [
         'title' => 'Актуальные трансферы и слухи из мира киберспорта',
@@ -68,10 +94,16 @@ Route::get('/insider', function(){
 
 })->name('insider');
 
+// Отправка инсайда 
 Route::post('/insider-add', 'BlogController@insider')->name('insider.add');
-
+// Поиск по сайту
 Route::post('/search', 'BlogController@search')->name('search');
 
+/**
+ *
+ * Новости дня https://cyberslovo.ru/insiders
+ * 
+ */
 Route::get('/short', function(){
 
     $meta = [
@@ -90,7 +122,19 @@ Route::get('/test', function(){
     return view('blog.test');
 });
 
+/**
+ *
+ * Пользователи и роли
+ * 
+ */
 Auth::routes(['register' => false]);
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'cyberpunk'], function() {
+    Route::resource('roles','Roles\RoleController');
+    Route::resource('users','Roles\UserController');
+});
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

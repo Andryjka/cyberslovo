@@ -19,6 +19,19 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   /* function __construct()
+    {
+         $this->middleware('permission:artlice-list|artlice-create|artlice-edit|artlice-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:artlice-create', ['only' => ['create','store']]);
+         $this->middleware('permission:artlice-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:artlice-delete', ['only' => ['destroy']]);
+    }*/
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.articles.index')->with([

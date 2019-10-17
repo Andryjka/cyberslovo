@@ -89,6 +89,15 @@
                 <a class="nav-link" href="/cyberpunk/today">
                   <i class="nav-icon icon-info"></i> #ВКУРСЕ</a>
             </li>
+            <li class="nav-title">Пользователи и группы</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                  <i class="nav-icon icon-user"></i> Пользователи</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('roles.index') }}">
+                  <i class="nav-icon icon-group"></i> Группы</a>
+            </li>
           </ul>
         </nav>
       </div>
