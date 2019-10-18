@@ -8,6 +8,14 @@ use App\Tag;
 
 class TagsController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:tags-list|tags-create|tags-edit|tags-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:tags-create', ['only' => ['create','store']]);
+         $this->middleware('permission:tags-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:tags-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
     	return view('admin.tags.index')->with([

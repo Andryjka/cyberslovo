@@ -25,7 +25,7 @@ Route::get('/tag/{name?}', 'BlogController@articlesByTag')->name('articles.tags'
  * 
  */
 
-Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Admin'], function(){
+Route::group(['prefix' => 'cyberpunk', 'namespace' => 'Admin', 'middleware' => ['auth']], function(){
     //Route::get('/', 'DashboardController@index')->name('admin.index');
     Route::get('/', function(){
         return redirect('/cyberpunk/article');

@@ -14,18 +14,13 @@ use Auth;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   /* function __construct()
+    function __construct()
     {
-         $this->middleware('permission:artlice-list|artlice-create|artlice-edit|artlice-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:artlice-create', ['only' => ['create','store']]);
-         $this->middleware('permission:artlice-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:artlice-delete', ['only' => ['destroy']]);
-    }*/
+         $this->middleware('permission:article-list|article-create|article-edit|article-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:article-create', ['only' => ['create','store']]);
+         $this->middleware('permission:article-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:article-delete', ['only' => ['destroy']]);
+    }
 
     /**
      * Display a listing of the resource.
