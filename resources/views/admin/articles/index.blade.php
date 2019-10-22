@@ -9,6 +9,12 @@
         @slot('active') Материалы @endslot
     @endcomponent
     <hr>
+    
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+          <p>{{ $message }}</p>
+        </div>
+    @endif
 
     <a href="{{route('admin.article.create')}}" class="btn btn-primary pull-right mb-3">
     <i class="fa fa-plus-square-o"></i>  &#160;Добавить материал</a>
