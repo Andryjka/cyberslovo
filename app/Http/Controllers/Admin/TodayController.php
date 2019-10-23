@@ -9,6 +9,15 @@ use Storage;
 
 class TodayController extends Controller
 {
+
+    function __construct()
+    {
+         $this->middleware('permission:vkurse-list|vkurse-create|vkurse-edit|vkurse-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:vkurse-create', ['only' => ['create','store']]);
+         $this->middleware('permission:vkurse-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:vkurse-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

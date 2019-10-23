@@ -9,6 +9,12 @@
         @slot('active') Материалы @endslot
     @endcomponent
     <hr>
+    
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+          <p>{{ $message }}</p>
+        </div>
+    @endif
 
     <a href="{{route('admin.article.create')}}" class="btn btn-primary pull-right mb-3">
     <i class="fa fa-plus-square-o"></i>  &#160;Добавить материал</a>
@@ -17,6 +23,7 @@
             <th>Наименование</th>
             <th class="d-none d-sm-block">Статус</th>
             <th>Просмотры</th>
+            <th>Автор</th>
             <th>Управление</th>
         </thead>
         <tbody>
@@ -31,6 +38,7 @@
                         @endif
                     </td>
                     <td><i class="fa fa-eye"></i> {{$article->viewed}}</td>
+                    <td>{{$article->author->name}}</td>
                     <td class="align-middle text-right">
                         <a class="btn" href="{{route('admin.article.edit', $article) }}"><i class="fa fa-edit"></i></a>
                         <form action="{{route('admin.article.destroy', $article)}}" onsubmit="if(confirm('Вы действительно хотите удалить?')){return true}else{return false}" method="post">
